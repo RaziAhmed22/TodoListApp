@@ -1,0 +1,29 @@
+.App{
+  background: url("bg-desktop-dark.jpg") no-repeat left top, linear-gradient(to right, rgba(6, 21, 57), rgba(46, 65, 114));
+  padding-bottom: 100%;
+ }
+.search{
+  width: 397px;
+  height: 50px;
+  /*border: solid #2e4172;*/
+  border: solid #061539;
+  border-width: 2px;
+}
+ul{
+  list-style-type: none;
+}
+::-webkit-input-placeholder{
+  color: white;
+}
+
+.list{
+  height: 50px;
+}
+
+.symbol{
+  width: 350px;
+}
+.box1{
+ border: solid #061539;
+  border-width: 2px; 
+}
