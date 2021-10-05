@@ -57,6 +57,12 @@ class App extends Component {
     const trash=this.state.array.filter(i=>!this.state.clear.includes(i))
     this.setState({array:trash})
   }
+  onClickCompletedCross=(item)=>{
+    const clear=this.state.clear;
+    clear.push(item)
+    const trash=this.state.completed.filter(i=>!this.state.clear.includes(i))
+    this.setState({completed:trash})
+  }
   render(){
   return (
     <div className="App ">
@@ -72,10 +78,10 @@ class App extends Component {
                 { 
                   this.state.condition==='all'
                   ? this.state.array.map((itemsval)=>{
-                    return (<li className="list white bb b--black flex items-center">
+                    return (<li className="list white bb b--black flex items-center pa2 tc">
                               <div className="pr2">
                                 <input onChange={()=>{this.onChangeRadio(itemsval)}} type="checkbox"/>
-                              </div>{itemsval}
+                              </div><div className="tc">{itemsval}</div>
                               <div className="buffer"></div>
                               <div className="symbol flex tr justify-end">
                                 {/*<div className="pr2">✓</div>*/}
@@ -85,11 +91,25 @@ class App extends Component {
                   })
                   : ( this.state.condition==="completed"
                       ? this.state.completed.map((itemsval)=>{
-                        return <li className="list white bb b--black flex items-center pa2">{itemsval}</li>
+                        return (<li className="list white bb b--black flex items-center pa3">
+                                  {itemsval}
+                                  <div className="symbol flex tr justify-end">
+                                    {/*<div className="pr2">✓</div>*/}
+                                    <div className="pointer dim" onClick={()=>{this.onClickCompletedCross(itemsval)}}>✕</div>
+                                  </div>
+                                </li>)
                       })
                       : this.state.array.map((itemsval)=>{
                         if (this.state.completed.includes(itemsval)===false){
-                          return <li className="list white bb b--black flex items-center pa2">{itemsval}</li>
+                          return (<li className="list white bb b--black flex items-center pa2">
+                                    <div className="pr2">
+                                      <input onChange={()=>{this.onChangeRadio(itemsval)}} type="checkbox"/>
+                                    </div>{itemsval}
+                                    <div className="symbol flex tr justify-end">
+                                      {/*<div className="pr2">✓</div>*/}
+                                      <div className="pointer dim" onClick={()=>{this.onClickCross(itemsval)}}>✕</div>
+                                    </div>
+                                  </li>)
                         }
                       })             
                   )     
